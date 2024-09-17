@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microcommerce
     username: postgres
-    password: postgres
+    password: postgres2121
 
   jpa:
     hibernate:
@@ -16,10 +16,10 @@ spring:
     show-sql: true
  
 management:
-    endpoints:
-        web:
-            exposure:
-                include: *
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 resilience4j:
   bulkhead:
