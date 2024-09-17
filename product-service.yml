@@ -4,17 +4,19 @@ server:
 spring:
   application:
     name: product-service
-
-  datasource:
+ datasource:
     url: jdbc:postgresql://localhost:5432/microcommerce
     username: postgres
     password: postgres
-
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
- 
+      ddl-auto: update # create, create-drop, validate, none veya update olabilir
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true # Konsolda SQL sorgularını görmek için
+    format-sql: true
 management:
   endpoints:
     web:
