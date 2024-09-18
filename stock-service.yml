@@ -20,7 +20,8 @@ spring:
         format-sql: true
 logging:
   level:
-    org.hibernate: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
 management:
   endpoints:
     web:
