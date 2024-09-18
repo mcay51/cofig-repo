@@ -3,7 +3,7 @@ spring:
     gateway:
       routes:
         - id: product-service
-          uri: lb://localhost:8081
+          uri: lb://product-service
           predicates:
             - Path=/products/**
         - id: order-service
