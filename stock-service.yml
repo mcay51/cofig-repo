@@ -5,18 +5,19 @@ spring:
   application:
     name: stock-service
   datasource:
+    initialization-mode: always
     url: jdbc:postgresql://localhost:5432/microcommerce
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
+    show-sql: true # Konsolda SQL sorgularını görmek için
     hibernate:
-      ddl-auto: create-drop # create, create-drop, validate, none veya update olabilir
+        ddl-auto: create-drop # create, create-drop, validate, none veya update olabilir
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true # Konsolda SQL sorgularını görmek için
-    format-sql: true
+        format-sql: true
 logging:
   level:
     org.hibernate: TRACE
