@@ -13,7 +13,7 @@ spring:
   jpa:
     show-sql: true # Konsolda SQL sorgularını görmek için
     hibernate:
-        ddl-auto: create-drop # create, create-drop, validate, none veya update olabilir
+        ddl-auto: create # create, create-drop, validate, none veya update olabilir
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
