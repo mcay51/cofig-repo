@@ -4,25 +4,29 @@ server:
 spring:
   application:
     name: product-service
- datasource:
+  datasource:
+    initialization-mode: always
     url: jdbc:postgresql://localhost:5432/microcommerce
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
+    show-sql: true # Konsolda SQL sorgularını görmek için
     hibernate:
-      ddl-auto: update # create, create-drop, validate, none veya update olabilir
+        ddl-auto: create # create, create-drop, validate, none veya update olabilir
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true # Konsolda SQL sorgularını görmek için
-    format-sql: true
+        format-sql: true
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-
 resilience4j:
   bulkhead:
     instances:
@@ -36,8 +40,9 @@ resilience4j:
         slidingWindowSize: 10
         permittedNumberOfCallsInHalfOpenState: 5
         waitDurationInOpenState: 5000ms
-        failureRateThreshold: 50      
+        failureRateThreshold: 50 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+      
