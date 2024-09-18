@@ -17,6 +17,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true # Konsolda SQL sorgularını görmek için
     format-sql: true
+logging:
+  level:
+    org.hibernate: TRACE
 management:
   endpoints:
     web:
@@ -40,3 +43,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+      
