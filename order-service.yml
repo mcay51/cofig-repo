@@ -41,11 +41,11 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3  # Yarı açık durumda izin verilen çağrı sayısı
         waitDurationInHalfOpenState: 5s  # Yarı açık durumda başarısız çağrılardan sonra bekleme süresi
         automaticTransitionFromOpenToHalfOpenEnabled: true  # Otomatik olarak yarı açık duruma geçiş
-        ignoreExceptions:
-          - com.example.exceptions.IgnoreThisException  # Bu istisnalar görmezden gelinir
-        recordExceptions:
-          - java.io.IOException  # Bu istisnalar başarısızlık olarak kaydedilir
-          - java.sql.SQLException
+        # ignoreExceptions:
+          # - com.example.exceptions.IgnoreThisException  # Bu istisnalar görmezden gelinir
+        # recordExceptions:
+          # - java.io.IOException  # Bu istisnalar başarısızlık olarak kaydedilir
+          # - java.sql.SQLException
         writableStackTraceEnabled: false  # Stack trace'in yazılıp yazılmayacağını kontrol eder
 
   ratelimiter:
