@@ -37,6 +37,12 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 2
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
+  ratelimiter:
+    instances:
+      getProductDetailsRateLimiter:
+        limitForPeriod: 5
+        limitRefreshPeriod: 1s
+        timeoutDuration: 0
 eureka:
   client:
     service-url:
