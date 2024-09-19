@@ -60,14 +60,14 @@ resilience4j:
   retry:
     instances:
       getProductDetailsRetry:
-        maxAttempts: 3              # Maksimum 3 kez deneme yapılır
-        waitDuration: 500ms          # Her yeniden deneme arasında 500 ms beklenir
-        retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
-          - java.io.IOException
-        ignoreExceptions:            # Bu istisnalar olduğunda yeniden deneme yapılmaz
-          - java.lang.IllegalArgumentException
+        maxAttempts: 5              # Maksimum 10 kez deneme yapılır
+        waitDuration: 500ms          # Her yeniden deneme arasında 500ms beklenir
+        # retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
+          # - java.io.IOException
+        # ignoreExceptions:            # Bu istisnalar olduğunda yeniden deneme yapılmaz
+          # - java.lang.IllegalArgumentException
         exponentialBackoffMultiplier: 2 # Her yeniden denemede bekleme süresi iki katına çıkar
-        maxDuration: 10s             # Yeniden denemeler en fazla 10 saniye içinde yapılır
+        maxDuration: 15s             # Yeniden denemeler en fazla 10 saniye içinde yapılır
 eureka:
   client:
     service-url:
