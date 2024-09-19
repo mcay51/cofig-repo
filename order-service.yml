@@ -31,13 +31,13 @@ resilience4j:
   circuitbreaker:
     instances:
       myServiceCircuitBreaker:
-        slidingWindowSize: 10  # Devre kesici açılmadan önce değerlendirilecek çağrı sayısı
+        slidingWindowSize: 4  # Devre kesici açılmadan önce değerlendirilecek çağrı sayısı
         slidingWindowType: COUNT_BASED  # Çağrılar sayıya dayalı olarak değerlendirilir
-        minimumNumberOfCalls: 5  # Değerlendirme için gereken minimum çağrı sayısı
+        minimumNumberOfCalls: 2  # Değerlendirme için gereken minimum çağrı sayısı
         failureRateThreshold: 50  # Devre kesici açılması için gereken başarısızlık oranı (%)
         slowCallDurationThreshold: 2s  # Yavaş olarak kabul edilen çağrılar için eşik süresi
         slowCallRateThreshold: 50  # Yavaş çağrıların devre kesiciyi tetiklemesi için gereken oran (%)
-        waitDurationInOpenState: 10s  # Devre kesici açıkken bekleme süresi
+        waitDurationInOpenState: 5ss  # Devre kesici açıkken bekleme süresi
         permittedNumberOfCallsInHalfOpenState: 3  # Yarı açık durumda izin verilen çağrı sayısı
         waitDurationInHalfOpenState: 5s  # Yarı açık durumda başarısız çağrılardan sonra bekleme süresi
         automaticTransitionFromOpenToHalfOpenEnabled: true  # Otomatik olarak yarı açık duruma geçiş
@@ -46,7 +46,7 @@ resilience4j:
         # recordExceptions:
           # - java.io.IOException  # Bu istisnalar başarısızlık olarak kaydedilir
           # - java.sql.SQLException
-        writableStackTraceEnabled: false  # Stack trace'in yazılıp yazılmayacağını kontrol eder
+        writableStackTraceEnabled: true  # Stack trace'in yazılıp yazılmayacağını kontrol eder
 
   ratelimiter:
     instances:
@@ -60,7 +60,7 @@ resilience4j:
   retry:
     instances:
       getProductDetailsRetry:
-        maxAttempts: 5              # Maksimum 10 kez deneme yapılır
+        maxAttempts: 5              # Maksimum 5 kez deneme yapılır
         waitDuration: 500ms          # Her yeniden deneme arasında 500ms beklenir
         # retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
           # - java.io.IOException
