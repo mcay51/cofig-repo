@@ -37,7 +37,7 @@ resilience4j:
         failureRateThreshold: 50  # Devre kesici açılması için gereken başarısızlık oranı (%)
         slowCallDurationThreshold: 2s  # Yavaş olarak kabul edilen çağrılar için eşik süresi
         slowCallRateThreshold: 50  # Yavaş çağrıların devre kesiciyi tetiklemesi için gereken oran (%)
-        waitDurationInOpenState: 5ss  # Devre kesici açıkken bekleme süresi
+        waitDurationInOpenState: 5s  # Devre kesici açıkken bekleme süresi
         permittedNumberOfCallsInHalfOpenState: 3  # Yarı açık durumda izin verilen çağrı sayısı
         waitDurationInHalfOpenState: 5s  # Yarı açık durumda başarısız çağrılardan sonra bekleme süresi
         automaticTransitionFromOpenToHalfOpenEnabled: true  # Otomatik olarak yarı açık duruma geçiş
