@@ -61,9 +61,9 @@ resilience4j:
       getProductDetailsRetry:
         maxAttempts: 5              # Maksimum 5 kez deneme yapılır
         waitDuration: 500ms          # Her yeniden deneme arasında 500ms beklenir
-        retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
-          - java.net.ConnectException  
-          - java.io.IOException
+        # retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
+          # - java.net.ConnectException  
+          # - java.io.IOException
         # ignoreExceptions:            # Bu istisnalar olduğunda yeniden deneme yapılmaz
           # - java.lang.IllegalArgumentException
         exponentialBackoffMultiplier: 2 # Her yeniden denemede bekleme süresi iki katına çıkar
