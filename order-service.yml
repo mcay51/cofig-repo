@@ -30,19 +30,44 @@ management:
 resilience4j:
   circuitbreaker:
     instances:
-      productService:
-        registerHealthIndicator: true
-        slidingWindowSize: 5
-        minimumNumberOfCalls: 5
-        permittedNumberOfCallsInHalfOpenState: 2
-        failureRateThreshold: 50
-        waitDurationInOpenState: 10s
+      myServiceCircuitBreaker:
+        slidingWindowSize: 10  # Devre kesici açılmadan önce değerlendirilecek çağrı sayısı
+        slidingWindowType: COUNT_BASED  # Çağrılar sayıya dayalı olarak değerlendirilir
+        minimumNumberOfCalls: 5  # Değerlendirme için gereken minimum çağrı sayısı
+        failureRateThreshold: 50  # Devre kesici açılması için gereken başarısızlık oranı (%)
+        slowCallDurationThreshold: 2s  # Yavaş olarak kabul edilen çağrılar için eşik süresi
+        slowCallRateThreshold: 50  # Yavaş çağrıların devre kesiciyi tetiklemesi için gereken oran (%)
+        waitDurationInOpenState: 10s  # Devre kesici açıkken bekleme süresi
+        permittedNumberOfCallsInHalfOpenState: 3  # Yarı açık durumda izin verilen çağrı sayısı
+        waitDurationInHalfOpenState: 5s  # Yarı açık durumda başarısız çağrılardan sonra bekleme süresi
+        automaticTransitionFromOpenToHalfOpenEnabled: true  # Otomatik olarak yarı açık duruma geçiş
+        ignoreExceptions:
+          - com.example.exceptions.IgnoreThisException  # Bu istisnalar görmezden gelinir
+        recordExceptions:
+          - java.io.IOException  # Bu istisnalar başarısızlık olarak kaydedilir
+          - java.sql.SQLException
+        writableStackTraceEnabled: false  # Stack trace'in yazılıp yazılmayacağını kontrol eder
+
   ratelimiter:
     instances:
       getProductDetailsRateLimiter:
-        limitForPeriod: 5
-        limitRefreshPeriod: 10s
-        timeoutDuration: 0
+        limitForPeriod: 5            # 10 saniyede en fazla 5 istek işlenir
+        limitRefreshPeriod: 10s      # İstek limiti her 10 saniyede bir sıfırlanır
+        timeoutDuration: 0           # İstek hemen reddedilir, beklenmez
+        drainPermissionsOnError: true # Hata alındığında kalan tüm izinler tüketilir
+        writableStackTraceEnabled: false # Stack trace yazımı devre dışı bırakılır
+        eventConsumerBufferSize: 50   # En fazla 50 Rate Limiter olayı saklanır
+  retry:
+    instances:
+      getProductDetailsRetry:
+        maxAttempts: 3              # Maksimum 3 kez deneme yapılır
+        waitDuration: 500ms          # Her yeniden deneme arasında 500 ms beklenir
+        retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
+          - java.io.IOException
+        ignoreExceptions:            # Bu istisnalar olduğunda yeniden deneme yapılmaz
+          - java.lang.IllegalArgumentException
+        exponentialBackoffMultiplier: 2 # Her yeniden denemede bekleme süresi iki katına çıkar
+        maxDuration: 10s             # Yeniden denemeler en fazla 10 saniye içinde yapılır
 eureka:
   client:
     service-url:
