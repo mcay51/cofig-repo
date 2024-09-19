@@ -47,7 +47,6 @@ resilience4j:
           # - java.io.IOException  # Bu istisnalar başarısızlık olarak kaydedilir
           # - java.sql.SQLException
         writableStackTraceEnabled: true  # Stack trace'in yazılıp yazılmayacağını kontrol eder
-
   ratelimiter:
     instances:
       getProductDetailsRateLimiter:
@@ -62,7 +61,7 @@ resilience4j:
       getProductDetailsRetry:
         maxAttempts: 10              # Maksimum 5 kez deneme yapılır
         waitDuration: 500ms          # Her yeniden deneme arasında 500ms beklenir
-         retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
+        retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
            - java.io.IOException
         # ignoreExceptions:            # Bu istisnalar olduğunda yeniden deneme yapılmaz
           # - java.lang.IllegalArgumentException
