@@ -60,7 +60,7 @@ resilience4j:
   retry:
     instances:
       getProductDetailsRetry:
-        maxAttempts: 5              # Maksimum 5 kez deneme yapılır
+        maxAttempts: 10              # Maksimum 5 kez deneme yapılır
         waitDuration: 500ms          # Her yeniden deneme arasında 500ms beklenir
          retryExceptions:             # Bu tür istisnalar meydana geldiğinde yeniden denenecek
            - java.io.IOException
