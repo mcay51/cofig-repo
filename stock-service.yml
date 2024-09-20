@@ -23,6 +23,10 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type: TRACE
 management:
+  trace:
+    enabled : true
+  dump:
+    enabled: true
   endpoints:
     web:
       exposure:
