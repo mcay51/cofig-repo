@@ -4,3 +4,12 @@ eureka:
     fetch-registry: true
   server:
     enable-self-preservation: true
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

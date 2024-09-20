@@ -5,6 +5,15 @@ spring:
         git:
           uri: https://github.com/mcay51/config-repo
           searchPaths: '{application}'
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 eureka:
   client:
     service-url:
