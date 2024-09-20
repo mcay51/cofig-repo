@@ -68,6 +68,11 @@ resilience4j:
           # - java.lang.IllegalArgumentException
         exponentialBackoffMultiplier: 2 # Her yeniden denemede bekleme süresi iki katına çıkar
         maxDuration: 10s             # Yeniden denemeler en fazla 10 saniye içinde yapılır
+  bulkhead:
+    instances:
+      orderServiceBulkhead:
+        maxConcurrentCalls: 5       # Aynı anda işleyebileceği maksimum işlem sayısı
+        maxWaitDuration: 2s         # İşlemin kuyruğa alınması durumunda maksimum bekleme süresi
 eureka:
   client:
     service-url:
