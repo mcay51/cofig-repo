@@ -28,9 +28,11 @@ management:
       exposure:
         include: "*"
   trace:
-    enabled : true
+    http: 
+      enabled : true
   dump:
-    enabled: true
+    http:
+      enabled: true
 resilience4j:
   bulkhead:
     instances:
